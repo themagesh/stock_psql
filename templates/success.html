@@ -1,12 +1,20 @@
-<h1>Success!</h1>
-<p>Your data was submitted successfully.</p>
-<form action="{% url 'input-data' %}" method="get">
-    <button type="submit">Add Stock</button>
-</form> 
-<div >
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Page</title>
+</head>
+<body>
+    <h1>Success</h1>
+    <form action="{% url 'input-data' %}" method="get">
+        <button type="submit">Add Stock</button>
+    
+    <h2>Stock List</h2>
+    <ul>
+ 
         {% for stock in stocks %}
-        <div style="display: flex;">
+        <div>
             <li>{{ stock.stockCode }}</li>
             <li>{{ stock.companyName }}</li>
             <li>{{ stock.industry }}</li>
@@ -14,8 +22,7 @@
             <li>{{ stock.website }}</li>
             <!-- <li>{{ stock.about }}</li> -->
         </div>
-        <div style="flex-direction: wrap">
-
+        <div>
             <img src={{stock.singleLine}} alt="chart" style='height: 250px' >
             <img src={{stock.upTrend}} alt="chart" style='height: 250px' >
             <img src={{stock.downTrend}} alt="chart" style='height: 250px' >
@@ -26,4 +33,5 @@
         {% endfor %}
 
     </ul>
-</div>
+</body>
+</html>

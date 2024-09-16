@@ -1,5 +1,15 @@
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Data</title>
+</head>
+<body style='background-color: #1f1f1f;color: aliceblue; margin: 30PX;'>
+    <h1>Enter Stock Data</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
