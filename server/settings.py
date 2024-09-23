@@ -85,7 +85,7 @@ DATABASES = {
         'USER': 'stockroot',
         'PASSWORD': 'root',
         'HOST': 'localhost',  # or your database host
-        'PORT': '5432',  # default PostgreSQL port
+        'PORT': '5432',
     }
 }
 

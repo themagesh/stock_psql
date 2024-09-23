@@ -19,8 +19,15 @@ def success_view(request):
 def success_view(request):
     stocks = InputData.objects.all()  # Query the InputData model
     context = {
+
         'stocks': stocks,  # Pass the fetched data to the template
     }
     return render(request, 'success.html', context)
-
+def singleLine(request):
+    stocks = InputData.objects.all()  # Query the InputData model
+    context = {
+        
+        'stocks': stocks,  # Pass the fetched data to the template
+    }
+    return render(request, 'allstock.html', context)
 
