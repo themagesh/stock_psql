@@ -6,18 +6,15 @@
     <title>One|chart.in</title>
 </head>
 <body>
-    <form action="{% url 'input-data' %}" method="get">
-        <button type="submit">Add Stock</button>
-    </form>
-    
-    <h2>singleLine</h2>
-        {% for stock in stocks %}
-        <div>
-            <li>{{ stock.stockCode }}</li>
-        </div>
-        <div>
-            <img src={{stock.singleLine}} alt="chart" style='height: 250px' >
-        </div>
-        {% endfor %}
+       {% for stock in singleLine %}
+       <div>
+           <h3>{{ stock.stockCode }}</h3>
+       </div>
+       <div>
+        <img src={{stock.singleLine}} alt="chart" style='height: 250px'>
+    </div>
+{% empty %}
+    <p>No stocks available.</p>
+   {% endfor %}
 </body>
 </html>

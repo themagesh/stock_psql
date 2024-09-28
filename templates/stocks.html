@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks List</title>
+</head>
+<body>
+     <form action="{% url 'input-data' %}" method="get">
+        <button type="submit">Add Stock</button>
+    </form>
+    <div id="stock-list">
+        {% include 'allstock.html' %}
+    </div>
+    <div id="loading-message" style="display:none;">
+        Loading more stocks...
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let page = 1;  // Start on the first page
+
+        // Infinite scroll
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200) {
+                loadMoreStocks();
+            }
+        });
+
+        function loadMoreStocks() {
+            page += 1;  // Move to the next page
+            $('#loading-message').show();
+
+            $.ajax({
+                url: '?page=' + page,
+                type: 'get',
+                success: function(data) {
+                    if (data.trim() === '') {
+                        $('#loading-message').text('No more stocks to load');
+                    } else {
+                        $('#stock-list').append(data);  // Append new content to the list
+                        $('#loading-message').hide();
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
