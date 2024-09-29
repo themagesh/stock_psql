@@ -13,38 +13,65 @@
     <div id="stock-list">
         {% include 'allstock.html' %}
     </div>
+   
+
+
     <div id="loading-message" style="display:none;">
         Loading more stocks...
+    </div>
+    
+    <div id="no-more-stocks-message" style="display:none;"></div>
+        No more stocks to load.
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        let page = 1;  // Start on the first page
-
-        // Infinite scroll
-        $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200) {
-                loadMoreStocks();
-            }
-        });
-
+        let page = 1;  // Start at page 1
+        let isLoading = false;  // Prevent multiple AJAX requests
+        let hasMorePages = true;  // Flag to stop when no more pages
+    
+        // Function to load more stocks when scrolling
         function loadMoreStocks() {
+            if (isLoading || !hasMorePages) return;  // Do nothing if already loading or no more pages
+    
+            isLoading = true;  // Set loading state
             page += 1;  // Move to the next page
-            $('#loading-message').show();
-
+    
+            $('#loading-message').show();  // Show loading message
+    
             $.ajax({
-                url: '?page=' + page,
+                url: '?page=' + page,  // Send page number in query string
                 type: 'get',
                 success: function(data) {
-                    if (data.trim() === '') {
+                    // If data is empty, no more pages are available
+                    if ($.trim(data) === '') {
+                        hasMorePages = false;  // Stop further loading
                         $('#loading-message').text('No more stocks to load');
                     } else {
-                        $('#stock-list').append(data);  // Append new content to the list
-                        $('#loading-message').hide();
+                        // Append new content to the list
+                        $('#stock-list').append(data);
+                        $('#loading-message').hide();  // Hide loading message
                     }
+                    isLoading = false;  // Reset loading state
+                },
+                error: function() {
+                    $('#loading-message').text('Error loading more stocks');
+                    isLoading = false;
                 }
             });
         }
+    
+        // Infinite scroll listener
+        $(window).scroll(function() {
+            console.log($(window).scrollTop())
+            console.log($(window).height() )
+            console.log($(document).height() - 200)
+            console.log($(window).scrollTop() + $(window).height() >= $(document).height() - 200)
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200) {
+                loadMoreStocks();  // Trigger loading more content when scrolling near the bottom
+            }
+        });
     </script>
+    
 </body>
 </html>

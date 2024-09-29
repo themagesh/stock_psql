@@ -6,15 +6,13 @@
     <title>One|chart.in</title>
 </head>
 <body>
-       {% for stock in singleLine %}
+     {% for stock in singleLine %}
        <div>
            <h3>{{ stock.stockCode }}</h3>
        </div>
        <div>
-        <img src={{stock.singleLine}} alt="chart" style='height: 250px'>
-    </div>
-{% empty %}
-    <p>No stocks available.</p>
-   {% endfor %}
+        <img src={{stock.singleLine}} alt="chart" style='height: 300px'>
+         </div>
+    {% endfor %}
 </body>
 </html>

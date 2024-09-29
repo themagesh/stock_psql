@@ -35,14 +35,20 @@ def success_view(request):
 
 def singleLine(request):
     stock_list = InputData.objects.all().order_by('id') # Fetch all stock records
-    paginator = Paginator(stock_list,10)  # Show 10 stocks per pag
-    page_number = request.GET.get('page')
+    paginator = Paginator(stock_list,10) # Show 10 stocks per pag
+    # print(stock_list.count()) 
+    page_number = request.GET.get('page',1)
     singleLine = paginator.get_page(page_number)
 
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-    # Handle AJAX request here
-  # If it's an AJAX request, return only the new page content
-        return render(request, 'allstock.html', {'singleLine': singleLine})
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':# Handle AJAX request here
+         if not singleLine.has_next():
+            return render(request, 'allstock.html', {'singleLine': []})
+         return render(request, 'allstock.html', {'singleLine': singleLine})
     return render(request, 'stocks.html', {'singleLine': singleLine})
 
          
+def home(request):
+    return render(request, 'stock/home.html')
+
+def about(request):
+    return render(request, 'stock/about.html')
