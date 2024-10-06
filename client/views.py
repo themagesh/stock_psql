@@ -62,8 +62,12 @@ def stock_prices_view(request):
         stock_ticker = yf.Ticker(ticker)
         try:
             # Fetch live price for each stock using yfinance
+            previousClose = stock_ticker.info['previousClose']
             current_price = stock_ticker.history(period='1d')['Close'].iloc[-1]  # Latest price
+
+            stock.previousClose = previousClose
             last_updated = now()  # Record current timestamp
+            stock.save()
         except Exception as e:
             current_price = 'N/A'  # Handle error, no price available
             last_updated = 'N/A'  # No update time in case of error
@@ -73,11 +77,14 @@ def stock_prices_view(request):
             'company_name': stock.companyName,
             'current_price': current_price,
             'last_updated': last_updated.strftime('%b. %d, %Y, %I:%M %p') if last_updated != 'N/A' else 'N/A',
-            'previousClos':stock_ticker.info.get('previousClose','N/A'),
+            'previousClose':stock_ticker.info.get('previousClose','N/A'),
         })
+        
     
     context = {
-        'stock_data_list': stock_data_list
+        'ticker': ticker,
+        'previousClose': previousClose,
+        'stock_data_list': stock_data_list,
     }
 
     return render(request, 'stock_prices.html', context)
