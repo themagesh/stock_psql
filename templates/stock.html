@@ -6,14 +6,10 @@
     <title>Success Page</title>
 </head>
 <body>
-    <h1>Success</h1>
-    <form action="{% url 'input-data' %}" method="get">
-        <button type="submit">Add Stock</button>
-    </form>
-    <h2>Stock List</h2>
+<h3>Single Stock</h3>
     <ul>
- 
-        {% for stock in stocks %}
+
+
         <div>
             <li>{{ stock.stockCode }}</li>
             <li>{{ stock.companyName }}</li>
@@ -21,8 +17,10 @@
             <li>{{ stock.sector }}</li>
             <li>{{ stock.website }}</li>
             <li>{{ stock.current_price|floatformat:2 }}</li>
-            <li>{{ stock.balance_sheet|safe }}</li>
-            <li>{{ stock.about }}</li>
+            <li>{{ stock.last_updated }}</li>
+            <!-- <li>{{ stock.balance_sheet|safe }}</li>
+            <li>{{ stock.about }}</li> -->
+
         </div>
         <div>
             <img src={{stock.singleLine}} alt="chart" style='height: 250px'>
@@ -30,10 +28,11 @@
             <img src={{stock.downTrend}} alt="chart" style='height: 250px' >
             <img src={{stock.lineTouch}} alt="chart" style='height: 250px' >
             <img src={{stock.lineCross}} alt="chart" style='height: 250px' >
+        
             
         </div>
-        {% endfor %}
-
+<div>{{ stock.previousClos }}</div>
     </ul>
+
 </body>
 </html>

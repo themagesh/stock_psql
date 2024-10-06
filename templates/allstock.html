@@ -9,10 +9,13 @@
      {% for stock in singleLine %}
        <div>
            <h3>{{ stock.stockCode }}</h3>
+           <h3>{{ stock.current_price|floatformat:2 }}</h3>
        </div>
        <div>
-        <img src={{stock.singleLine}} alt="chart" style='height: 300px'>
-         </div>
+        <a href="{% url 'stock' stock.stockCode  %}">
+            <img src="{{ stock.singleLine }}" alt="{{ stock.companyName }}" style="width: 200px; height: 200px;">
+        </a>
+        </div>
     {% endfor %}
 </body>
 </html>

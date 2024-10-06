@@ -1,12 +1,11 @@
 from django.views.decorators.http import require_GET
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.utils.timezone import now
 from django.core.paginator import Paginator
 from .forms import InputDataForm
 from .models import InputData
 import yfinance as yf
-from django.shortcuts import render
 from django.core.management import call_command
 from django.http import HttpResponse
 
@@ -21,9 +20,6 @@ def input_data_view(request):
         form = InputDataForm()
     
     return render(request, 'index.html', {'form': form})
-def success_view(request):
-    return render(request, 'success.html') 
-
 def success_view(request):
     stocks = InputData.objects.all()  # Query the InputData model
     context = {
@@ -76,7 +72,8 @@ def stock_prices_view(request):
             'stock_code': stock.stockCode,
             'company_name': stock.companyName,
             'current_price': current_price,
-            'last_updated': last_updated.strftime('%b. %d, %Y, %I:%M %p') if last_updated != 'N/A' else 'N/A'
+            'last_updated': last_updated.strftime('%b. %d, %Y, %I:%M %p') if last_updated != 'N/A' else 'N/A',
+            'previousClos':stock_ticker.info.get('previousClose','N/A'),
         })
     
     context = {
@@ -84,3 +81,8 @@ def stock_prices_view(request):
     }
 
     return render(request, 'stock_prices.html', context)
+
+def stock(request, stock_code):
+    stock = get_object_or_404(InputData, stockCode=stock_code)
+    return render(request, 'stock.html', {'stock': stock})
+
