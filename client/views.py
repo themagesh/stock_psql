@@ -7,7 +7,7 @@ from .forms import InputDataForm
 from .models import InputData
 import yfinance as yf
 from django.core.management import call_command
-from django.http import HttpResponse
+from django.urls import reverse
 
 
 def input_data_view(request):
@@ -106,7 +106,14 @@ def search_stocks(request):
         )
 
         # Serialize the results into a JSON format
-        results_list = list(results.values('stockCode', 'companyName'))
+        # results_list = list(results.values('stockCode', 'companyName'))
+        results_list = []
+        for stock in results:
+            results_list.append({
+                'stockCode': stock.stockCode,
+                'companyName': stock.companyName,
+                'url': reverse('stock', args=[stock.stockCode])  # Generate the stock detail URL
+            })
         return JsonResponse(results_list, safe=False)
     
     return JsonResponse([], safe=False)

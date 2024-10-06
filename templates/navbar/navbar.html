@@ -46,9 +46,11 @@
                     if (data.length > 0) {
                         data.forEach(stock => {
                             resultDiv.innerHTML += `
-                                <div>
-                                    <h3>${stock.stockCode} - ${stock.companyName}</h3>
-                                </div>
+                                    <div>
+                                        <a href="${stock.url}">
+                                            <h3>${stock.stockCode} - ${stock.companyName}</h3>
+                                        </a>
+                                    </div>
                             `;
                         });
                     } else {
