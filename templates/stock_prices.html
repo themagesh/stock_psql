@@ -1,0 +1,17 @@
+
+<table>
+    <tr>
+        <th>Stock Code</th>
+        <th>Company Name</th>
+        <th>Current Price</th>
+        <th>Last Updated</th>
+    </tr>
+    {% for stock in stock_data_list %}
+    <tr>
+        <td>{{ stock.stock_code }}</td>
+        <td>{{ stock.company_name }}</td>
+        <td>{{ stock.current_price }}</td>
+        <td>{{ stock.last_updated }}</td>
+    </tr>
+    {% endfor %}
+</table>

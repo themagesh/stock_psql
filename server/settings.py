@@ -39,8 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'client'
+    'client',
+    'channels',
 ]
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -140,3 +146,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 PAGE_SIZE = 5
+
+ASGI_APPLICATION = 'server.asgi.application'
+
+# Celery settings
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Or your broker of choice
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'update-stock-prices-every-minute': {
+        'task': 'client.tasks.update_stock_prices_task',
+        'schedule': crontab(minute='*/1'),  # Every minute
+    },
+}

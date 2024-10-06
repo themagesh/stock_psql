@@ -1,4 +1,7 @@
-from django.contrib import admin
-from .models import stocks
+from django import template
 
-admin.site.register(stocks)
+register = template.Library()
+
+@register.filter
+def length_is(value, arg):
+    return len(value) == int(arg)

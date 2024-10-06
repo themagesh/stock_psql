@@ -4,8 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "==5.1.1"
 django-bootstrap-v5 = "*"
+channels = "*"
+asgiref = "==3.8.1"
+psycopg2 = "==2.9.9"
+sqlparse = "==0.5.1"
+tzdata = "==2024.1"
 
 [dev-packages]
 

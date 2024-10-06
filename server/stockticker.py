@@ -1,6 +1,9 @@
 import yfinance as yf
 
-msft = yf.Ticker("MSFT")
+sbin = yf.Ticker("HDFCBANK.NS")
 
-# get all stock info
-print(msft.info)
+stock_info = sbin.history(period="1d")
+current_price = stock_info['Close'].iloc[-1]
+
+# Print the current stock price
+print(current_price)
