@@ -32,7 +32,7 @@ class stock(models.Model):
     lineTouch = models.URLField()
     lineCross = models.URLField()
     live_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    current_price = models.FloatField(default=0.0) 
+    current_price = models.FloatField(default=1.0) 
     lastUpdated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
