@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">chartap</a>
@@ -16,13 +17,46 @@
           <button type="submit">Add Stock</button>
       </form></li>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+
+                <div>
+                  <input class="form-control me-2" type="search"  aria-label="Search" id="search" onkeyup="searchStocks()" placeholder="Search Stocks..." />
+                  <img src="/path/to/search-icon.png" alt="Search" style="cursor: pointer;" onclick="searchStocks()">
+                  <div id="search-results"></div>
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+              </div>
+
               </form>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <script>
+    function searchStocks() {
+        let query = document.getElementById('search').value;
+  
+        // Perform search only if at least 3 characters are typed
+        if (query.length >= 3) {
+            fetch(`/search-stocks/?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    let resultDiv = document.getElementById('search-results');
+                    resultDiv.innerHTML = '';  // Clear previous results
+  
+                    if (data.length > 0) {
+                        data.forEach(stock => {
+                            resultDiv.innerHTML += `
+                                <div>
+                                    <h3>${stock.stockCode} - ${stock.companyName}</h3>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        resultDiv.innerHTML = '<p>No results found</p>';
+                    }
+                });
+        }
+    }
+  </script>
         
       

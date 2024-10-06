@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Search</title>
+    <script>
+        function searchStocks() {
+            let query = document.getElementById('search').value;
+
+            // Perform search only if at least 3 characters are typed
+            if (query.length >= 3) {
+                fetch(`/search-stocks/?q=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let resultDiv = document.getElementById('search-results');
+                        resultDiv.innerHTML = '';  // Clear previous results
+
+                        if (data.length > 0) {
+                            data.forEach(stock => {
+                                resultDiv.innerHTML += `
+                                    <div>
+                                        <h3>${stock.stockCode} - ${stock.companyName}</h3>
+                                    </div>
+                                `;
+                            });
+                        } else {
+                            resultDiv.innerHTML = '<p>No results found</p>';
+                        }
+                    });
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div>
+        <input type="text" id="search" onkeyup="searchStocks()" placeholder="Search Stocks..." />
+        <img src="/path/to/search-icon.png" alt="Search" style="cursor: pointer;" onclick="searchStocks()">
+    </div>
+    
+    <div id="search-results"></div>
+
+</body>
+</html>

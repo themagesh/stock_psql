@@ -93,3 +93,20 @@ def stock(request, stock_code):
     stock = get_object_or_404(InputData, stockCode=stock_code)
     return render(request, 'stock.html', {'stock': stock})
 
+
+def search_stocks(request):
+    query = request.GET.get('q', '')
+
+    # Search only if query has at least 3 characters
+    if len(query) >= 3:
+        results = InputData.objects.filter(
+            stockCode__icontains=query
+        ) | InputData.objects.filter(
+            companyName__icontains=query
+        )
+
+        # Serialize the results into a JSON format
+        results_list = list(results.values('stockCode', 'companyName'))
+        return JsonResponse(results_list, safe=False)
+    
+    return JsonResponse([], safe=False)
