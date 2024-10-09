@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 'BUILD START'
 python3.12 -m venv venv 
- source venv/bin/activate
+source venv/bin/activate
 python3.12 -m pip install -r requirements.txt
 echo 'BUILD END'
 # Install dependencies
