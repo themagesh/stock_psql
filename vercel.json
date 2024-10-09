@@ -26,5 +26,6 @@
     "src": "/(.*)",
     "dest": "stock_psql/server/wsgi.py"
     }
-    ]
+    ],
+    "outputDirectory": "staticfiles"
     }
