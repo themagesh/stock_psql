@@ -1,23 +1,13 @@
 #!/bin/bash
-set -e
-
-# Check if python and pip are installed
-if ! command -v python &> /dev/null
-then
-    echo "python could not be found. Make sure you have specified a Python runtime in vercel.json."
-    exit 1
-fi
-
-if ! command -v pip3 &> /dev/null
-then
-    echo "pip could not be found. Make sure you have specified a Python runtime in vercel.json."
-    exit 1
-fi
-
+echo 'BUILD START'
+python3.12 -m venv venv 
+ source venv/bin/activate
+pip install -r requirements.txt
+echo 'BUILD END'
 # Install dependencies
-pip3 install setuptools
-pip3 install -r requirements.txt
+pip install setuptools
 
+echo 'colit'
 # Collect static files without user input
 python manage.py makemigrations
 python manage.py migrate

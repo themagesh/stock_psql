@@ -3,27 +3,17 @@
     "builds": [
     {
          "src": "stock_psql/wsgi.py",
-         "use": "@vercel/python3.12",
+         "use": "@vercel/python",
          "config": {
             "maxLambdaSize": "15mb", 
             "runtime": "python3.12"
          }
     },
     {
-      "functions": {
-        "client/**/*.py": {
-          "runtime": "python3.12"
-        }
-      }
-    },
-    {
     "src": "build_files.sh",
     "use": "@vercel/static-build",
     "config": {
-    "distDir": "staticfiles_build",
-    "api/**/*.py": {
-      "runtime": "python3.12"
-    }
+    "distDir": "staticfiles_build"
      }
     }
     ],
@@ -34,7 +24,7 @@
     },
     {
     "src": "/(.*)",
-    "dest": "client/apps.py"
+    "dest": "client/wsgi.py"
     }
     ]
     }
