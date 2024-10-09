@@ -4,9 +4,7 @@ set -e
 # Activate virtual environment
 source venv/bin/activate
 
-# Install dependencies
+echo 'BUILD START'
+python manage.py collectstatic --noinputn --clear
 pip install -r requirements.txt
-
-# Run Django collectstatic
-python manage.py collectstatic --noinput
-
+echo 'BUILD END'
