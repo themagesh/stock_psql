@@ -1,4 +1,2 @@
-SECRET_KEY='your-secret-key-here'
-DATABASE_URL='postgres://username:password@localhost:5432/dbname'
-
-
+DATABASE_URL='postgresql://USER:PASSWORD@aws-0-us-east-1.pooler.supabase.com:6543/postgres'
+DATABASE_URL

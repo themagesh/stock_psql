@@ -10,17 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
+
 import os
 import environ
-import dj_database_url
-import os
 from pathlib import Path
-
+import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,8 +31,7 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-
+SECRET_KEY='your-generated-secret-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -69,6 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -96,32 +96,29 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+# DATABASES = {
+#     'default': {
       
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'stockdb',
-        'USER': 'stockroot',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',  # or your database host
-        'PORT': '5432',
-    }
-}
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'stockdb',
+#         'USER': 'stockroot',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',  # or your database host
+#         'PORT': '5432',
+#     }
+# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('SUPABASE_DB_NAME'),
-        'USER': os.getenv('SUPABASE_DB_USER'),
-        'PASSWORD': os.getenv('SUPABASE_DB_PASSWORD'),
-        'HOST': os.getenv('SUPABASE_DB_HOST'),
-        'PORT': os.getenv('SUPABASE_DB_PORT'),
+        'NAME': 'postgres',
+        'USER': 'postgres.oqtgofxukdppdbrticfh',
+        'PASSWORD': 'Magesh@#$1234',
+        'HOST': 'aws-0-us-east-1.pooler.supabase.com',
+        'PORT': '6543',
     }
 }
 
-DATABASES = {
-    'default': env.db(),
-}
 
 
 # Password validation
@@ -190,3 +187,5 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
