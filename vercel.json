@@ -10,10 +10,20 @@
          }
     },
     {
+      "functions": {
+        "api/**/*.py": {
+          "runtime": "python3.x"
+        }
+      }
+    },
+    {
     "src": "build_files.sh",
     "use": "@vercel/static-build",
     "config": {
-    "distDir": "staticfiles_build"
+    "distDir": "staticfiles_build",
+    "api/**/*.py": {
+      "runtime": "python3.x"
+    }
      }
     }
     ],
