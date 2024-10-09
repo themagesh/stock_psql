@@ -24,7 +24,7 @@
     },
     {
     "src": "/(.*)",
-    "dest": "client/wsgi.py"
+    "dest": "stock_psql/wsgi.py"
     }
     ]
     }
