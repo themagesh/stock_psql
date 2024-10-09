@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
     {
-         "src": "stock_psql/wsgi.py",
+         "src": "stock_psql/server/wsgi.py",
          "use": "@vercel/python",
          "config": {
             "maxLambdaSize": "15mb", 
@@ -24,7 +24,7 @@
     },
     {
     "src": "/(.*)",
-    "dest": "stock_psql/wsgi.py"
+    "dest": "stock_psql/server/wsgi.py"
     }
     ]
     }
