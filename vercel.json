@@ -34,7 +34,7 @@
     },
     {
     "src": "/(.*)",
-    "dest": "client/wsgi.py"
+    "dest": "client/apps.py"
     }
     ]
     }
