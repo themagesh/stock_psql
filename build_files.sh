@@ -1,11 +1,18 @@
 #!/bin/bash
-set -e
+set -x
 
-# Activate virtual environment
+echo "Starting build process..."
+
+# Activate the virtual environment
+python3 -m venv venv
+
 source venv/bin/activate
 
+echo "Virtual environment activated."
 
-echo 'BUILD START'
-python manage.py collectstatic --noinputn --clear
+# Install dependencies
+echo "Installing dependencies..."
 pip install -r requirements.txt
-echo 'BUILD END'
+
+echo "Build steps completed."
+chmod +x build_files.sh
