@@ -15,7 +15,18 @@
        "config": {
          "distDir": "staticfiles_build"
        }
-     }
+     },
+     {
+      "builds": [
+        {
+          "src": "build_files.sh",
+          "use": "@vercel/static-build",
+          "config": {
+            "distDir": "staticfiles_build"
+          }
+        }
+      ]
+    }
    ],
    "routes": [
      {
@@ -29,4 +40,5 @@
    ],
    "outputDirectory": "staticfiles_build"
  }
+ 
  
