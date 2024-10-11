@@ -1,8 +1,6 @@
 asgiref==3.8.1
-beautifulsoup4==4.12.3
 billiard==4.2.1
 celery==5.4.0
-channels==4.1.0
 dj-database-url==2.2.0
 Django>=4.1,<5.0
 django-celery-beat==2.7.0
@@ -10,12 +8,8 @@ django-environ==0.11.2
 django-timezone-field==7.0
 html5lib==1.1
 multitasking==0.0.11
-packaging==24.1
 psycopg2-binary==2.9.9
-python-crontab==3.2.0
-python-dateutil==2.9.0.post0
 requests==2.32.3
-sqlparse==0.5.1
 yfinance==0.2.43  
                      
             
