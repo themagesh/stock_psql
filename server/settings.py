@@ -20,9 +20,9 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'versel_deploymet.settings')
 
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+# }
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +39,7 @@ SECRET_KEY='your-generated-secret-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
+ALLOWED_HOSTS = ["*"]
 
 
 
@@ -100,28 +100,28 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-      
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'stockdb',
-#         'USER': 'stockroot',
-#         'PASSWORD': 'root',
-#         'HOST': 'localhost',  # or your database host
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres.oqtgofxukdppdbrticfh',
-        'PASSWORD': 'Magesh@#$1234',
-        'HOST': 'aws-0-us-east-1.pooler.supabase.com',
-        'PORT': '6543',
+      
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'stockdb',
+        'USER': 'stockroot',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',  # or your database host
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'postgres',
+#         'USER': 'postgres.oqtgofxukdppdbrticfh',
+#         'PASSWORD': 'Magesh@#$1234',
+#         'HOST': 'aws-0-us-east-1.pooler.supabase.com',
+#         'PORT': '6543',
+#     }
+# }
 
 
 

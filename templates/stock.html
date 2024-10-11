@@ -2,30 +2,35 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
         {% include 'navbar/navbar.html' %}
+        <style>
+            .two-lines {
+                display: -webkit-box;
+                -webkit-line-clamp: 2; 
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis; 
+            }
+        </style>
+        
 <h3>Single Stock</h3>
     <ul>
-
-
-        <div>
-            <li>{{ stock.stockCode }}</li>
-            <li>{{ stock.companyName }}</li>
-            <li>{{ stock.industry }}</li>
-            <li>{{ stock.sector }}</li>
-            <li>{{ stock.website }}</li>
-            <li>{{ stock.current_price|floatformat:2 }}</li>
-            <li>{{ stock.last_updated }}</li>
-            <li>{{ stock.previousClose }}</li>
-            <!-- <li>{{ stock.balance_sheet|safe }}</li>
-            <li>{{ stock.about }}</li> -->
-
-        </div>
-        <div>
-            <img src={{stock.singleLine}} alt="chart" style='height: 250px'>
-            <img src={{stock.upTrend}} alt="chart" style='height: 250px' >
-            <img src={{stock.downTrend}} alt="chart" style='height: 250px' >
-            <img src={{stock.lineTouch}} alt="chart" style='height: 250px' >
-            <img src={{stock.lineCross}} alt="chart" style='height: 250px' >
-        
-            
-        </div>
+        {% include 'stock/stock_details/stock_price.html' %}
+       {% include 'stock/chart/chart.html' %}
     </ul>
+    <p class="two-lines" id="paragraph">{{ stock.about }}</p>
+    <a href="#" id="toggle-text">Read more</a>
+    
+    <script>
+        document.getElementById('toggle-text').addEventListener('click', function(e) {
+            e.preventDefault();
+            const paragraph = document.getElementById('paragraph');
+            if (paragraph.classList.contains('two-lines')) {
+                paragraph.classList.remove('two-lines');
+                this.textContent = 'Read less';
+            } else {
+                paragraph.classList.add('two-lines');
+                this.textContent = 'Read more';
+            }
+        });
+    </script>
+    

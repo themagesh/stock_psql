@@ -8,7 +8,7 @@ app = Celery('stock_psql')
 app.conf.beat_schedule = {
     'fetch-stock-prices-every-1-second': {
         'task': 'stock_psql.tasks.fetch_and_update_stock_prices',
-        'schedule': 1.0,  # 1-second interval
+        'schedule': 5.0,  # 1-second interval
     },
 }
 

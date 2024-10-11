@@ -10,6 +10,8 @@ from django.core.management import call_command
 from django.urls import reverse
 
 
+
+
 def input_data_view(request):
     if request.method == 'POST':
         form = InputDataForm(request.POST)

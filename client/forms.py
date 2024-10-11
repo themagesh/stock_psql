@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class InputDataForm(forms.ModelForm):
     class Meta:
         model = InputData
-        fields = ['stockCode', 'companyName', 'industry', 'sector', 'website', 'about', 'singleLine', 'upTrend', 'downTrend','lineTouch', 'lineCross', 'live_price']
+        fields = ['stockCode', 'companyName', 'industry', 'sector', 'website', 'about', 'singleLine', 'upTrend', 'downTrend','lineTouch', 'lineCross', 'live_price',]
 
         # accounts/forms.py
 

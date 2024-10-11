@@ -8,7 +8,8 @@ urlpatterns = [
     path('stock_price/', views.stock_prices_view, name='stock_prices_view'),
     path('home', views.home, name='home'),
     path('stock/<str:stock_code>/', views.stock, name='stock'), 
-    path('search-stocks/', views.search_stocks, name='search_stocks')
+    path('search-stocks/', views.search_stocks, name='search_stocks'),
+    
 ]
 
 
