@@ -50,6 +50,7 @@ wcwidth==0.2.13
 webencodings==0.5.1
 whitenoise==6.7.0
 yfinance==0.2.43  
-requests 2.32.3                     
+requests==2.32.3
+                     
             
 
