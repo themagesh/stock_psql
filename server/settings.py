@@ -39,7 +39,11 @@ SECRET_KEY='your-generated-secret-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ["*"]
+=======
+ALLOWED_HOSTS = ['*','stock-psql.onrender.com']
+>>>>>>> dd4ea8b8da919ff69c000eed06a2c9dd88efb3ab
 
 
 
