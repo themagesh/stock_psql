@@ -39,11 +39,10 @@ SECRET_KEY='your-generated-secret-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
+
 ALLOWED_HOSTS = ["*",'stock-psql.onrender.com']
-=======
-ALLOWED_HOSTS = ['*','stock-psql.onrender.com']
->>>>>>> dd4ea8b8da919ff69c000eed06a2c9dd88efb3ab
+
+
 
 
 
@@ -116,16 +115,16 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'postgres',
-#         'USER': 'postgres.oqtgofxukdppdbrticfh',
-#         'PASSWORD': 'Magesh@#$1234',
-#         'HOST': 'aws-0-us-east-1.pooler.supabase.com',
-#         'PORT': '6543',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres.oqtgofxukdppdbrticfh',
+        'PASSWORD': 'Magesh@#$1234',
+        'HOST': 'aws-0-us-east-1.pooler.supabase.com',
+        'PORT': '6543',
+    }
+}
 
 
 

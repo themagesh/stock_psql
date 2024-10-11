@@ -1,4 +1,4 @@
-import templates.yfainace.yfinance as yf
+import yfinance as yf
 
 sbin = yf.Ticker("HDFCBANK.NS")
 

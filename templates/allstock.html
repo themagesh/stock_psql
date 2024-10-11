@@ -1,11 +1,6 @@
-
-       {% for stock in singleLine %}
-<<<<<<< HEAD
-       <div style="margin:auto; with:50%; padding:10px;">
-=======
-<div style="margin:auto; with:50%; padding:10px;">
+ {% for stock in singleLine %} 
+ <div style="margin:auto; with:50%; padding:10px;">
        
->>>>>>> dd4ea8b8da919ff69c000eed06a2c9dd88efb3ab
        <div>
            <h3>{{ stock.stockCode }}</h3>
            <h3>{{ stock.current_price|floatformat:2 }}</h3>
@@ -18,9 +13,5 @@
         <hr>
         <br>
         </div>
-<<<<<<< HEAD
     </div>
-=======
-</div>
->>>>>>> dd4ea8b8da919ff69c000eed06a2c9dd88efb3ab
     {% endfor %}
